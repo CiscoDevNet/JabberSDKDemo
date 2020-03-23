@@ -1,0 +1,495 @@
+html,
+body {
+    margin: 0;
+    height: 100%;
+    background: #f1fdff;
+	font-family: 'Roboto', sans-serif; 
+	font-size: 0.8em; color: #717171;
+	overflow: hidden;
+}
+section {
+    width: 100%;
+    float: left;
+    padding: 0px;
+}
+h1, h2, h3, h4 {
+	line-height: 1em !important;
+	font-size: 0.9em !important;
+	outline: none !important;
+}
+.chatpanel {
+    height: calc(100% - 150px);
+	width: calc(100% - 25px);
+	outline-width: thin;
+	outline-color: #d1dddf;
+	outline-style: solid;
+}
+.material .ui-corner-all {
+    border-radius: 2px !important;
+}
+.emoji {
+    width: 1.5em;
+    height: 1.5em;
+    display: inline-block;
+    margin-bottom: -0.25em;
+}
+.log {
+    padding: 12px;
+    margin: 8px 0px;
+    background: #fffff;
+}
+.logarea {
+    float: left;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
+.ingroup {
+    overflow: auto;
+    height: 300px;
+    max-height: 300px;
+}
+.grouphead {
+    outline: none;
+    outline-style: none;
+}
+.mainDemoContainer {
+    width: 100%;
+    height: 650px;
+    margin-top: 50px;
+}
+.ui-accordion .ui-accordion-content {
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 10px;
+}
+.occupantlist {
+    list-style: none;
+    padding-left: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.occupants {
+    display: inline-block;
+    height: calc(100% - 5px);
+    width: 150px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.changebutton {
+    height: 18px;
+    font-size: 0.7em !important;
+    margin: 0 auto;
+    padding: 5px;
+    text-align: center;
+}
+.occupant {
+    width: 100%;
+    background: #f1fdff;
+    border-style: solid;
+    border-color: #d1dddf;
+    border-width: 1px;
+    border-radius: 0px;
+    margin-bottom: 1px;
+    padding-left: 1em;
+    padding-top: 0.1em;
+    padding-bottom: 0.1em;
+    padding-right: 0.1em;
+    font-size: 1em;
+    height: 18px;
+    width: auto;
+    overflow: hidden;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+.contact {
+    width: 100%;
+    background: #f1fdff;
+    border-style: solid;
+    border-color: #d1dddf;
+    border-width: 1px;
+    border-radius: 2px;
+    margin-bottom: 1px;
+    padding-top: 0.1em;
+    padding-bottom: 0.1em;
+    padding-right: 0.1em;
+    font-size: 1.0em;
+    height: 30px;
+    overflow: hidden;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+.contact:hover {
+    background: #e1edef;
+} 
+.status {
+    float: left;
+    color: gray;
+	padding-top: 2px;
+    font-size: 0.8em;
+}
+.chatarea {
+    height: calc(100% - 10px);
+}
+.xicon {
+    float: right;
+    cursor: hand !important;
+    cursor: pointer !important;
+}
+.ui-tabs-anchor {
+	font-size: 0.7em !important;
+}
+.tabarea {
+    height: calc(100% - 10px);
+}
+.chattabs {
+    position: absolute;
+    top: 0px;
+    padding: 0px !important;
+    margin: 0px !important;
+    resize: both;
+}
+.tabchatarea {
+    position: absolute;
+    top: 0px;
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+    resize: both;
+	border: 0 !important;
+	outline: none !important;
+}
+.muchatarea {
+    position: relative;
+    top: 5px;
+    float: left;
+    height: calc(100% - 80px);
+    width: calc(100% - 5px);
+    overflow: hidden;
+}
+.muchtext {
+    position: relative;
+    display: inline-block;
+    border: 1px black;
+    margin-left: 0px;
+    margin-right: 5px;
+    height: calc(100% - 5px);
+    width: calc(100% - 155px);
+    overflow-y: auto;
+}
+.broadcastarea {
+    position: absolute;
+    bottom: 5px;
+    float: left;
+    height: 80px;
+    width: 95%;
+    overflow: hidden;
+}
+.broadcasttext {
+    position: absolute;
+    left: 0px;
+    bottom: 5px;
+    height: 50px;
+    width: calc(100% - 80px);
+    resize: none;
+    outline: none;
+    outline-style: none;
+    border: 1px solid #d1dddf;
+    border-radius: 0px;
+    outline: note;
+    font-size: 1.1em !important;
+    font-family: Arial;
+}
+.mucsubject {
+    position: absolute;
+    bottom: 65px;
+    height: 14px;
+    width: 100%;
+    text-align: left;
+    color: blue;
+    font-size: 0.8em;
+}
+.messagearea {
+    position: absolute;
+    top: 46px;
+    float: left;
+    height: calc(100% - 146px);
+    width: calc(100% - 30px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.container {
+    margin-left: 0px;
+    margin-right: 5px;
+    width: calc(100% - 10px);
+}
+.sendarea {
+    position: absolute;
+    bottom: 5px;
+    left: 20px;
+    float: left;
+    height: 80px;
+    width: 95%;
+    overflow: hidden;
+}
+.chatstate {
+    position: absolute;
+    bottom: 65px;
+	left: 10px;
+	line-height: 1em;
+    height: 12px;
+    width: 100%;
+    text-align: left;
+    color: gray;
+    font-size: 0.8em;
+}
+.messagetext {
+    position: absolute;
+    left: 0px;
+    bottom: 5px;
+    height: 50px;
+    width: calc(100% - 90px);
+    resize: none;
+    outline: none;
+    outline-style: none;
+    border: 1px solid #d1dddf;
+    border-radius: 0px;
+    outline: note;
+    font-size: 1.1em !important;
+    font-family: Arial;
+}
+.sendbutton {
+    position: absolute;
+    bottom: 20px;
+    right: 5px;
+    vertical-align: middle;
+    margin-top: 5px;
+}
+.logbutton {
+    float: left;
+    vertical-align: middle;
+    margin-top: 15px;
+}
+.leftButton {
+    float: left;
+    vertical-align: middle;
+    margin-top: 15px;
+}
+.rightButton {
+    float: right;
+    vertical-align: middle;
+    margin-top: 15px;
+}
+.rosterlist {
+    position: absolute;
+    top: 70px;
+    right: 0px;
+    left: 0px;
+    bottom: 50px;
+	padding: 0px !important;
+    min-width: 260px;
+}
+.mypresence {
+    position: absolute;
+    top: 10px;
+    width: 90%;
+    height: 70px;
+}
+.cbutton {
+    position: absolute;
+    right: 33px;
+    top: 0px;
+	height: 22px;
+    border-radius: 2px;
+}
+.mucbutton {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+	height: 22px;
+    border-radius: 2px;
+}
+.mypimage {
+    float: left;
+    vertical-align: middle;
+    margin-bottom: 18px;
+	margin-top: 7px;
+	margin-left: 2px;
+	margin-right: 5px;
+	height: 10px;
+	width: auto;
+}
+.options {
+    float: right;
+}
+.unp {
+    float: left;
+    width: 90%;
+    height: 18px;
+    resize: none;
+    color: black;
+    font-size: 0.8em;
+}
+.prtext {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    float: left;
+    width: 200px;
+    height: 14px;
+    resize: none;
+    color: black;
+    font-size: 8px;
+    border: 1px solid #d1dddf;
+    border-radius: 0px;
+    background: transparent;
+    outline: none;
+}
+.jdinput {
+	width: 90%;
+    border: 1px solid #d1dddf;
+    border-radius: 0px;
+    background: transparent;
+    outline: none;
+}
+.prmenu {
+    width: 200px;
+}
+.ui-icon.available {
+    background: url("img/Available.png");
+}
+.ui-icon.away {
+    background: url("img/Unavailable.png");
+}
+.ui-icon.dnd {
+    background: url("img/DND.png");
+}
+.picon {
+	height: 6px;
+	width: auto;
+}
+.pimage {
+    float: left;
+    vertical-align: middle;
+	margin-top: 3px;
+	margin-left: 2px;
+	margin-right: 5px;
+	height: 10px;
+	width: auto;
+}
+.csimage {
+    float: left;
+    vertical-align: middle;
+	margin-top: 3px;
+	margin-left: 2px;
+	margin-right: 5px;
+	height: 6px;
+	width: auto;
+}
+.pselect {
+	font-size: 0.7em;
+    float: left;
+    width: 160px;
+}
+.overflow { 
+	height: 200px; 
+}
+.sgroup {
+    width: 170px;
+}
+.myalert {
+    font-size: 1.2em;
+}
+.mytext {
+    background-color: #f1fdff;
+    font-size: 1.2em;
+    font-family: "Roboto";
+    line-height: 130%;
+}
+.yourtext {
+    background-color: #ffffff;
+    font-size: 1.2em;
+    font-family: "Roboto";
+    line-height: 130%;
+}
+.muchatname {
+    background-color: #f1fdff;
+	font-weight: bold;
+    font-size: 1.2em;
+    font-family: Ariel;
+    line-height: 130%;
+}
+.muchattext {
+    background-color: #ffffff;
+    font-size: 1.2em;
+    font-family: Kalam;
+    line-height: 130%;
+}
+#tabs-left li .ui-icon-close {
+    float: left;
+    margin: 0.4em 0.2em 0 0;
+    cursor: pointer;
+}
+#tabs-left {
+    position: relative;
+    padding-left: 6.5em;
+}
+#tabs-left .ui-tabs-nav {
+    position: absolute;
+    left: 0.25em;
+    top: 0.25em;
+    bottom: 0.25em;
+    width: 120px;
+    padding: 0.2em 0 0.2em 0.2em;
+}
+#tabs-left .ui-tabs-nav li {
+    right: 1px;
+    width: 100%;
+    border-right: none;
+    border-bottom-width: 1px !important;
+    -moz-border-radius: 2px 0px 0px 2px;
+    -webkit-border-radius: 2px 0px 0px 2px;
+    border-radius: 2px 0px 0px 2px;
+    overflow: hidden;
+}
+#tabs-left .ui-tabs-nav li.ui-tabs-selected,
+#tabs-left .ui-tabs-nav li.ui-state-active {
+    border-right: 1px solid transparent;
+}
+#tabs-left .ui-tabs-nav li a {
+    float: right;
+    width: 100%;
+    text-align: right;
+}
+@font-face {
+    font-family: Kalam;
+    src: url('Fonts/Kalam-Regular.ttf');
+}
+@font-face {
+    font-family: mystyle;
+    src: url('Fonts/mystyle.ttf');
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("Fonts/roboto/Roboto-Thin.ttf");
+  font-weight: 200; }
+
+@font-face {
+  font-family: "Roboto";
+  src: url("Fonts/roboto/Roboto-Light.ttf");
+  font-weight: 300; }
+
+@font-face {
+  font-family: "Roboto";
+  src: url("Fonts/roboto/Roboto-Regular.ttf");
+  font-weight: 400; }
+
+@font-face {
+  font-family: "Roboto";
+  src: url("Fonts/roboto/Roboto-Medium.ttf");
+  font-weight: 500; }
+
+@font-face {
+  font-family: "Roboto";
+  src: url("Fonts/roboto/Roboto-Bold.ttf");
+  font-weight: 700; }
+

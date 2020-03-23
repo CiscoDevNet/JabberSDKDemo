@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AdiumSetVersion</key>
+	<real>1.1</real>
+	<key>List</key>
+	<dict>
+		<key>Enteredtext</key>
+		<string>Text.tiff</string>
+		<key>Generic Available</key>
+		<string>Available.tiff</string>
+		<key>Generic Away</key>
+		<string>Away.tiff</string>
+		<key>Idle</key>
+		<string>Idle.tiff</string>
+		<key>Invisible</key>
+		<string>Offline.tiff</string>
+		<key>Mobile</key>
+		<string>Text.tiff</string>
+		<key>Offline</key>
+		<string>Offline.tiff</string>
+		<key>Unknown</key>
+		<string>Message.tiff</string>
+		<key>content</key>
+		<string>Message.tiff</string>
+		<key>typing</key>
+		<string>Typing.tiff</string>
+	</dict>
+	<key>Tabs</key>
+	<dict>
+		<key>Enteredtext</key>
+		<string>Text.tiff</string>
+		<key>Generic Available</key>
+		<string>Available.tiff</string>
+		<key>Generic Away</key>
+		<string>Away.tiff</string>
+		<key>Idle</key>
+		<string>Idle.tiff</string>
+		<key>Invisible</key>
+		<string>Offline.tiff</string>
+		<key>Mobile</key>
+		<string>Text.tiff</string>
+		<key>Offline</key>
+		<string>Offline.tiff</string>
+		<key>Unknown</key>
+		<string>Message.tiff</string>
+		<key>content</key>
+		<string>Message.tiff</string>
+		<key>typing</key>
+		<string>Typing.tiff</string>
+	</dict>
+</dict>
+</plist>
