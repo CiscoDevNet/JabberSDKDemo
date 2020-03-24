@@ -1,3 +1,85 @@
+/*
+Copyright (c) 2018 Cisco and/or its affiliates
+
+These terms govern this Cisco Systems, Inc. ("Cisco"), example or demo
+source code and its associated documentation (together, the "Sample
+Code"). By downloading, copying, modifying, compiling, or redistributing
+the Sample Code, you accept and agree to be bound by the following terms
+and conditions (the "License"). If you are accepting the License on
+behalf of an entity, you represent that you have the authority to do so
+(either you or the entity, "you"). Sample Code is not supported by Cisco
+TAC and is not tested for quality or performance. This is your only
+license to the Sample Code and all rights not expressly granted are
+reserved.
+
+1. LICENSE GRANT: Subject to the terms and conditions of this License,
+Cisco hereby grants to you a perpetual, worldwide, non-exclusive, non-
+transferable, non-sublicensable, royalty-free license to copy and
+modify the Sample Code in source code form, and compile and
+redistribute the Sample Code in binary/object code or other executable
+forms, in whole or in part, solely for use with Cisco products and
+services. For interpreted languages like Java and Python, the
+executable form of the software may include source code and
+compilation is not required.
+
+2. CONDITIONS: You shall not use the Sample Code independent of, or to
+replicate or compete with, a Cisco product or service. Cisco products
+and services are licensed under their own separate terms and you shall
+not use the Sample Code in any way that violates or is inconsistent
+with those terms (for more information, please visit:
+www.cisco.com/go/terms).
+
+3. OWNERSHIP: Cisco retains sole and exclusive ownership of the Sample
+Code, including all intellectual property rights therein, except with
+respect to any third-party material that may be used in or by the
+Sample Code. Any such third-party material is licensed under its own
+separate terms (such as an open source license) and all use must be in
+full accordance with the applicable license. This License does not
+grant you permission to use any trade names, trademarks, service
+marks, or product names of Cisco. If you provide any feedback to Cisco
+regarding the Sample Code, you agree that Cisco, its partners, and its
+customers shall be free to use and incorporate such feedback into the
+Sample Code, and Cisco products and services, for any purpose, and
+without restriction, payment, or additional consideration of any kind.
+If you initiate or participate in any litigation against Cisco, its
+partners, or its customers (including cross-claims and counter-claims)
+alleging that the Sample Code and/or its use infringe any patent,
+copyright, or other intellectual property right, then all rights
+granted to you under this License shall terminate immediately without
+notice.
+
+4. LIMITATION OF LIABILITY: CISCO SHALL HAVE NO LIABILITY IN CONNECTION
+WITH OR RELATING TO THIS LICENSE OR USE OF THE SAMPLE CODE, FOR
+DAMAGES OF ANY KIND, INCLUDING BUT NOT LIMITED TO DIRECT, INCIDENTAL,
+AND CONSEQUENTIAL DAMAGES, OR FOR ANY LOSS OF USE, DATA, INFORMATION,
+PROFITS, BUSINESS, OR GOODWILL, HOWEVER CAUSED, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGES.
+
+5. DISCLAIMER OF WARRANTY: SAMPLE CODE IS INTENDED FOR EXAMPLE PURPOSES
+ONLY AND IS PROVIDED BY CISCO "AS IS" WITH ALL FAULTS AND WITHOUT
+WARRANTY OR SUPPORT OF ANY KIND. TO THE MAXIMUM EXTENT PERMITTED BY
+LAW, ALL EXPRESS AND IMPLIED CONDITIONS, REPRESENTATIONS, AND
+WARRANTIES INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTY OR
+CONDITION OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-
+INFRINGEMENT, SATISFACTORY QUALITY, NON-INTERFERENCE, AND ACCURACY,
+ARE HEREBY EXCLUDED AND EXPRESSLY DISCLAIMED BY CISCO. CISCO DOES NOT
+WARRANT THAT THE SAMPLE CODE IS SUITABLE FOR PRODUCTION OR COMMERCIAL
+USE, WILL OPERATE PROPERLY, IS ACCURATE OR COMPLETE, OR IS WITHOUT
+ERROR OR DEFECT.
+
+6. GENERAL: This License shall be governed by and interpreted in
+accordance with the laws of the State of California, excluding its
+conflict of laws provisions. You agree to comply with all applicable
+United States export laws, rules, and regulations. If any provision of
+this License is judged illegal, invalid, or otherwise unenforceable,
+that provision shall be severed and the rest of the License shall
+remain in full force and effect. No failure by Cisco to enforce any of
+its rights related to the Sample Code or to a breach of this License
+in a particular situation will act as a waiver of such rights. In the
+event of any inconsistencies with any other terms, this License shall
+take precedence.
+*/
+
 var room = null;
 
 $(document).ready( function () {
@@ -47,11 +129,11 @@ $(document).ready( function () {
 					DemoApp.room[roomname].exit();
                     DemoApp.room[roomname].destroy();
                     DemoApp.room[roomname] = null;
-/*					
+/*
 					var grouper = fixString("Rooms");
 					$("#gr" + grouper).find("#im" + newjid).attr('src', "JabberDemo/img/Offline.png");
 					$("#gr" + grouper).find("#im" + newjid).attr('alt', 'Offline');
-*/					
+*/
                     $("#" + newjid).dialog("destroy").remove();
                 },
                 buttons: {
@@ -179,7 +261,7 @@ $(document).ready( function () {
 
 			log("DemoApp","Roomnames length = " + DemoApp.roomnames.length);
 			var grouper = fixString("Rooms");
-			
+
 			if (DemoApp.roomnames.length > 0) {
 				for (var i = 0; i < DemoApp.roomnames.length; i++ ) {
 					roomname = DemoApp.roomnames[i];
@@ -190,7 +272,7 @@ $(document).ready( function () {
 				}
 				return;
 			}
-		
+
             DemoApp.client.entitySet.each(function(entity) {
                 // Display domain of each text conferencing servers
                 var displayName = entity.getDisplayName();
@@ -199,7 +281,7 @@ $(document).ready( function () {
                     log("DemoApp", "room service is " + DemoApp.roomService);
                 }
             });
-			
+
 			var getAllRooms = function(responseXml) {
 				var roomJid;
 				var roomname;
@@ -232,29 +314,29 @@ $(document).ready( function () {
 					}
 				}
 			};
-			
+
 			var xmlContent = "<query xmlns='http://jabber.org/protocol/disco#items'/>";
 			DemoApp.client.sendIq("get", DemoApp.roomService, xmlContent, getAllRooms);
 
 		};
-		
+
 		_openRoom = function(roomname,subject,nickname) {
 
 			var roomJid = roomname + "@" + DemoApp.roomService;
-			
+
 			var newjid = fixString(roomJid);
-			
+
 			var connectedUser = DemoApp.client.connectedUser;
 			if (nickname == "") {
 				nickname = connectedUser.getDisplayName();
 			}
-			
+
 			if (DemoApp.room[roomname] == null || (!DemoApp.room[roomname].isActive())) {
-				
+
 				DemoApp.room[roomname] = DemoApp.mucController.room(roomJid);
-				
+
 				if (DemoApp.room[roomname] != null) {
-					
+
 					var success = _enterRoom(roomname,nickname);
 					if (success) {
 						log("DemoApp","Successfully entered " + roomname);
@@ -267,7 +349,7 @@ $(document).ready( function () {
 						DemoApp.subjects[roomname] = subject;
 						log("DemoApp", "Subject: " + subject);
 					});
-					
+
 					// Respond to an event that is triggered when an occupant is added to the room
 					DemoApp.room[roomname].occupants.event("entityCreated").bind(function(evt) {
 						log("DemoApp", "got entityCreated event" + evt.data);
@@ -295,16 +377,16 @@ $(document).ready( function () {
 					DemoApp.room[roomname].event("errorEncountered").bind(function(evt) {
 						log("DemoApp", "MUC error");
 					});
-					
+
 					/**
 					 * Event fired when the room has been entered completely. This
 					 * event handler maps other event handlers that are valid only
 					 * when a room has been entered.
 					 */
 					DemoApp.room[roomname].event("roomEntered").bind(function(evt) {
-						
+
 						log("DemoApp", "in roomEntered");
-						
+
 						/**
 						 * event fired when we have fully exited a room.
 						 * Destroy the room and clear our local reference.
@@ -314,7 +396,7 @@ $(document).ready( function () {
 						DemoApp.room[roomname].event("roomExited").bind(function(evt) {
 							$("#" + newjid).dialog("close");
 						});
-						
+
 						/**
 						 * event fired when the room receives a message. evt.data
 						 * is the jabberwerx.Message received.
@@ -356,7 +438,7 @@ $(document).ready( function () {
 						 * This is unused in this demo, so the line is commented out
 						 */
 			//          $('#subjectLabel').html(room.properties.subject);
-						
+
 						_updateOccupantsList(roomname);
 
 					});
@@ -368,9 +450,9 @@ $(document).ready( function () {
 				}
 				_MUChatRoom(roomname, subject, nickname, newjid);
 			}
-			
+
 		};
-		
+
         _updateOccupantsList = function(roomname) {
             /**
              * room.occupants is a jabberwerx.EntitySet of
@@ -407,12 +489,12 @@ $(document).ready( function () {
         };
 
 		_inviteSomeone = function(roomname) {
-/*			
+/*
             if (DemoApp.room[roomname] == null || !DemoApp.room[roomname].isActive()) {
                 myalert("Please enter a chat room before attempting to invite a contact");
                 return;
             }
-*/			
+*/
 			var contacts = [];
 			var contact;
 			var selecteduser;
@@ -427,8 +509,8 @@ $(document).ready( function () {
 				}
 			});
 
-            $('<div id="invitetomuc"><label for="muccontacts">Select a contact</label><BR>' + 
-				'<select id="muccontacts" class="pselect">' + 
+            $('<div id="invitetomuc"><label for="muccontacts">Select a contact</label><BR>' +
+				'<select id="muccontacts" class="pselect">' +
 				'</select><BR><BR>' +
                 'Reason:<br>' +
                 '<input type="text" class="jqinput" name="reason" id="reason" placeholder="Because"></input><br><br>' +
@@ -485,9 +567,9 @@ $(document).ready( function () {
                     }
                 }
             });
-			
+
 			contacts.sort();
-			
+
 			for (var i = 0; i < contacts.length; i++) {
 				if (i == 0) {
 					var changeit = contacts[i];
@@ -496,14 +578,14 @@ $(document).ready( function () {
 				}
 				$("#muccontacts").append(contacts[i]);
 			}
-			
+
 			$( "#muccontacts" ).selectmenu({
 				select: function( event, ui ) {
 					selecteduser = $("#muccontacts").val();
 					log ("DemoApp", "Selected JID = " + selecteduser);
 				}
 			});
-			
+
 			$( "#muccontacts" )
 			  .selectmenu()
 			  .selectmenu( "menuWidget" )
@@ -582,7 +664,7 @@ $(document).ready( function () {
 			var nickname = jidentity.getDisplayName();
 
             $('<div id="invitation">' +
-                'You have been invited to a chatroom by ' + invitor + ' for reason: ' + reason + '<br><br>' + 
+                'You have been invited to a chatroom by ' + invitor + ' for reason: ' + reason + '<br><br>' +
                 'Your Nickname:<br>' +
                 '<input type="text" class="jqinput" name="nickname" id="nickname" placeholder="' + nickname + '"></input><br><br>' +
                 '</div>').dialog({
@@ -808,15 +890,15 @@ $(document).ready( function () {
         _onRoomEnterSuccess = function() {
             log("DemoApp", "successfully entered room");
         };
-		
+
         _onRoomEnterError = function(err, aborted) {
-		
+
             log("DemoApp", 'Error entering room: ' + err.message);
-/*			
+/*
             DemoApp.room[roomname].exit();
             DemoApp.room[roomname].destroy();
             DemoApp.room[roomname] = null;
-*/			
+*/
         };
 
 });

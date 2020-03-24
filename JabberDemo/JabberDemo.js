@@ -1,9 +1,84 @@
 /*
- *
- * Demo CAXL application using jQuery and jQueryUI,
- *
- */
+Copyright (c) 2018 Cisco and/or its affiliates
 
+These terms govern this Cisco Systems, Inc. ("Cisco"), example or demo
+source code and its associated documentation (together, the "Sample
+Code"). By downloading, copying, modifying, compiling, or redistributing
+the Sample Code, you accept and agree to be bound by the following terms
+and conditions (the "License"). If you are accepting the License on
+behalf of an entity, you represent that you have the authority to do so
+(either you or the entity, "you"). Sample Code is not supported by Cisco
+TAC and is not tested for quality or performance. This is your only
+license to the Sample Code and all rights not expressly granted are
+reserved.
+
+1. LICENSE GRANT: Subject to the terms and conditions of this License,
+Cisco hereby grants to you a perpetual, worldwide, non-exclusive, non-
+transferable, non-sublicensable, royalty-free license to copy and
+modify the Sample Code in source code form, and compile and
+redistribute the Sample Code in binary/object code or other executable
+forms, in whole or in part, solely for use with Cisco products and
+services. For interpreted languages like Java and Python, the
+executable form of the software may include source code and
+compilation is not required.
+
+2. CONDITIONS: You shall not use the Sample Code independent of, or to
+replicate or compete with, a Cisco product or service. Cisco products
+and services are licensed under their own separate terms and you shall
+not use the Sample Code in any way that violates or is inconsistent
+with those terms (for more information, please visit:
+www.cisco.com/go/terms).
+
+3. OWNERSHIP: Cisco retains sole and exclusive ownership of the Sample
+Code, including all intellectual property rights therein, except with
+respect to any third-party material that may be used in or by the
+Sample Code. Any such third-party material is licensed under its own
+separate terms (such as an open source license) and all use must be in
+full accordance with the applicable license. This License does not
+grant you permission to use any trade names, trademarks, service
+marks, or product names of Cisco. If you provide any feedback to Cisco
+regarding the Sample Code, you agree that Cisco, its partners, and its
+customers shall be free to use and incorporate such feedback into the
+Sample Code, and Cisco products and services, for any purpose, and
+without restriction, payment, or additional consideration of any kind.
+If you initiate or participate in any litigation against Cisco, its
+partners, or its customers (including cross-claims and counter-claims)
+alleging that the Sample Code and/or its use infringe any patent,
+copyright, or other intellectual property right, then all rights
+granted to you under this License shall terminate immediately without
+notice.
+
+4. LIMITATION OF LIABILITY: CISCO SHALL HAVE NO LIABILITY IN CONNECTION
+WITH OR RELATING TO THIS LICENSE OR USE OF THE SAMPLE CODE, FOR
+DAMAGES OF ANY KIND, INCLUDING BUT NOT LIMITED TO DIRECT, INCIDENTAL,
+AND CONSEQUENTIAL DAMAGES, OR FOR ANY LOSS OF USE, DATA, INFORMATION,
+PROFITS, BUSINESS, OR GOODWILL, HOWEVER CAUSED, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGES.
+
+5. DISCLAIMER OF WARRANTY: SAMPLE CODE IS INTENDED FOR EXAMPLE PURPOSES
+ONLY AND IS PROVIDED BY CISCO "AS IS" WITH ALL FAULTS AND WITHOUT
+WARRANTY OR SUPPORT OF ANY KIND. TO THE MAXIMUM EXTENT PERMITTED BY
+LAW, ALL EXPRESS AND IMPLIED CONDITIONS, REPRESENTATIONS, AND
+WARRANTIES INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTY OR
+CONDITION OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-
+INFRINGEMENT, SATISFACTORY QUALITY, NON-INTERFERENCE, AND ACCURACY,
+ARE HEREBY EXCLUDED AND EXPRESSLY DISCLAIMED BY CISCO. CISCO DOES NOT
+WARRANT THAT THE SAMPLE CODE IS SUITABLE FOR PRODUCTION OR COMMERCIAL
+USE, WILL OPERATE PROPERLY, IS ACCURATE OR COMPLETE, OR IS WITHOUT
+ERROR OR DEFECT.
+
+6. GENERAL: This License shall be governed by and interpreted in
+accordance with the laws of the State of California, excluding its
+conflict of laws provisions. You agree to comply with all applicable
+United States export laws, rules, and regulations. If any provision of
+this License is judged illegal, invalid, or otherwise unenforceable,
+that provision shall be severed and the rest of the License shall
+remain in full force and effect. No failure by Cisco to enforce any of
+its rights related to the Sample Code or to a breach of this License
+in a particular situation will act as a waiver of such rights. In the
+event of any inconsistencies with any other terms, this License shall
+take precedence.
+*/
 /*jslint browser: true*/
 /*global $, jQuery, alert*/
 /*jslint nomen: true */
@@ -60,10 +135,10 @@ $(document).ready( function () {
             log("DemoApp", "Application.init begin");
 
 			this._super();
-			
+
 			var resource = demoConfig.resource + Math.floor((Math.random() * 1000000) + 1);
 			log("DemoApp","Resource = " + resource)
-			
+
             this.client = new jabberwerx.Client(resource);
 
             // bind necessary event handlers
@@ -75,9 +150,9 @@ $(document).ready( function () {
             this.controller = new jabberwerx.Controller(this.client, demoConfig.resource);
             this.rosterController = new jabberwerx.RosterController(this.client);
 			this.discoController = new jabberwerx.DiscoController(this.client);
-			
+
 			this.discoController.event("discoInitialized").bind(this.invocation('_discoInitialized'));
-		
+
 			this.chatController = new jabberwerx.ChatController(this.client);
 			this.chatController.event("chatSessionOpened").bind(this.invocation('_openChatSession'));
 
@@ -89,15 +164,15 @@ $(document).ready( function () {
 			// multi-user chat controller for multi-user chat rooms
 			this.mucController = new jabberwerx.MUCController(this.client);
 			this.mucController.event("mucInviteReceived").bind(this.invocation('_onInviteReceived'));
-			
+
 			this.room = [];
 			this.roomnames = [];
 			this.roomJids = [];
 			this.subjects = [];
 			this.roomService = null;
-			
+
 			this.LDAPController = null;
-			
+
             log("DemoApp", "Application.init end");
         },
 
@@ -115,7 +190,7 @@ $(document).ready( function () {
 
 		_discoInitialized: function() {
 			log("DemoApp","Disco is initialized");
-/*			
+/*
 			var ldapEntity;
 			DemoApp.client.entitySet.each(function(entity) {
 				var displayName = entity.getDisplayName();
@@ -124,12 +199,12 @@ $(document).ready( function () {
 					ldapEntity = entity;
 				}
 			});
-*/			
+*/
 
 //			this.LDAPController.subscribeGroup('ds-ucm115-1.cisco.com');
 //			this.LDAPController.activateSubscriptions();
 		},
-		
+
 		_getLDAP: function(userJid) {
 			log("DemoApp","Attempting to find LDAP user " + userJid);
 			if (this.LDAPController.isLDAPContact(userJid)) {
@@ -193,12 +268,12 @@ $(document).ready( function () {
                     };
                     this.client.connect(demoConfig.username + "@" + demoConfig.domain, demoConfig.password, connectArgs);
                 }
-				
+
             } catch (ex) {
                 jabberwerx.util.debug.warn(ex.message);
                 console.log("JWA: could not connect: " + ex.message);
             }
-	
+
         },
 
         // Disconnect, like it says
@@ -209,7 +284,7 @@ $(document).ready( function () {
                 this.client.disconnect();
             }
         },
-		
+
         // Open a chat session, and bind events for
         // updates to status (composing, etc.) and
         // message received
@@ -323,7 +398,7 @@ $(document).ready( function () {
                     scrollTop: 10000
                 });
                 document.getElementById('incoming').play();
-				
+
 				// pop up a notification for an incoming message
 				if ( ! window_focus ) {
 					if (("Notification" in window) && (Notification.permission === "granted")) {
@@ -339,7 +414,7 @@ $(document).ready( function () {
 				}
             }
         },
-		
+
         // Update the chat tab to reflect chat state such as "composing" or
         // "active", etc.
         _chatStateChanged: function(evt) {
@@ -421,7 +496,7 @@ $(document).ready( function () {
 
         // Update presence, including icon and status
         _updatePresence: function(evt) {
-			
+
             var presence = evt.data;
 			var jid;
 			var resource;
@@ -429,16 +504,16 @@ $(document).ready( function () {
 			var pstatus = presence.getStatus();
 			log("updatePresence status incoming", pstatus);
 			var priority = presence.getPriority();
-		
+
             var fulljid = presence.getFromJID().toString();
 //			log("updatePresence for ", fulljid +  " " + show + " " + pstatus + " " + priority);
-			
+
             var slash = fulljid.indexOf("/");
             if (slash != -1) {
 				resource = fulljid.substring(slash + 1,fulljid.length);
                 jid = fulljid.substring(0, slash);
             }
-			
+
             var myJid = this.client.connectedUser.jid;
 
 			// If this isn't a presence update for my JID from another client,
@@ -469,9 +544,9 @@ $(document).ready( function () {
 							break;
 					}
 				}
-			
+
 				log("updatePresence end", jid + " " + show + " " + pstatus + " " + priority);
-				
+
 			} else {
 
 				if (resource != "composed") {
@@ -480,7 +555,7 @@ $(document).ready( function () {
 					var groups = this.client.entitySet.getAllGroups();
 					groups.push("Rooms");
 					var src = getSrcImage(show);
-					
+
 					// alphebetize the group names
 					for (var i in groups) {
 						var thisGroup = groups[i];
@@ -496,18 +571,18 @@ $(document).ready( function () {
 						} else {
 							$("#gr" + grouper).find("#st" + newjid).hide().html("").fadeIn("fast");
 						}
-						
+
 						if (pstatus == "Logged out" || priority == -1) {
 							$("#gr" + grouper).find("#im" + newjid).attr('src',"JabberDemo/img/Offline.png");
 						}
-						
+
 					}
 				}
 				log("updatePresence end", jid + " " + show + " " + pstatus + " " + priority);
 			}
-			
+
         },
-		
+
         // This still doesn't work yet, not sure why not
         _onClientReconnect: function(evt) {
             log("DemoApp", "reconnect event fired");
@@ -594,7 +669,7 @@ $(document).ready( function () {
 
         // When connected, create roster, load roster, and send presence
         _onClientConnected: function(evt) {
-			
+
             log("DemoApp", "got connected event");
 
 			// chat controller
@@ -605,18 +680,18 @@ $(document).ready( function () {
 			this.chatController.event("chatSessionOpened").bind(this.invocation('_openChatSession'));
 
 			this.LDAPController = new jabberwerx.cisco.DirectoryGroupsController(this.client);
-			
+
 			// entity events
 			this.client.entitySet.event("entityUpdated").bind(this.invocation('_onEntityUpdated'));
 			this.client.entitySet.event("entityAdded").bind(this.invocation('_onEntityAdded'));
 			this.client.entitySet.event("entityRemoved").bind(this.invocation('_onEntityRemoved'));
-			
+
             _createRoster();
             _loadRoster();
 			_setAvailable();
             _setState(evt.data.next);
-			
-/*			
+
+/*
 			this.LDAPController = new jabberwerx.cisco.DirectoryGroupsController(this.client);
 			var ldapContacts = [];
 			ldapContacts = this.LDAPController._ldapContacts;
@@ -624,7 +699,7 @@ $(document).ready( function () {
 				log("DemoApp","Contact: " + ldapContacts[i]);
             }
 			log("DemoApp","Done listing contacts");
-*/			
+*/
         },
 
         // When disconnected, destroy roster and show login dialog
